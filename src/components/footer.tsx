@@ -1,4 +1,5 @@
-import { Github, Link2 } from "lucide-react";
+import { Github } from "lucide-react";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -8,13 +9,19 @@ export function Footer() {
         <p className="text-text-secondary text-sm mb-6 max-w-md mx-auto">
           专注于为开发者提供最全面的 AI 云服务商对比信息，帮助你做出明智的技术选择。
         </p>
-        <div className="flex justify-center gap-6 mb-8">
-          <a
-            href="#providers"
+        <div className="flex justify-center gap-6 mb-8 flex-wrap">
+          <Link
+            href="/"
             className="text-text-secondary hover:text-primary-light text-sm transition-colors"
           >
             服务商列表
-          </a>
+          </Link>
+          <Link
+            href="/token-guide"
+            className="text-text-secondary hover:text-primary-light text-sm transition-colors"
+          >
+            Token 入门指南
+          </Link>
           <a
             href="#how-to-choose"
             className="text-text-secondary hover:text-primary-light text-sm transition-colors"

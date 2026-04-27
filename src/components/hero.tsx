@@ -1,7 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, BookOpen } from "lucide-react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
@@ -32,7 +33,7 @@ export function Hero() {
           聚合各大云服务商的 Coding Plan 与 Token Plan，助你轻松对比免费额度、功能特色和定价方案，降低开发成本，加速项目落地。
         </p>
 
-        <div className="flex flex-wrap gap-4 justify-center mb-20 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+        <div className="flex flex-wrap gap-4 justify-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
           <Button size="lg" asChild>
             <a href="#providers">
               浏览服务商
@@ -42,6 +43,16 @@ export function Hero() {
           <Button size="lg" variant="secondary" asChild>
             <a href="#how-to-choose">如何选择</a>
           </Button>
+        </div>
+
+        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400">
+          <Link 
+            href="/token-guide" 
+            className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors text-sm"
+          >
+            <BookOpen className="w-4 h-4" />
+            还不了解 Token？点击了解 Token 入门指南 →
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400">
