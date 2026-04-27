@@ -21,7 +21,7 @@ export const providers: Provider[] = [
       '企业级安全认证'
     ],
     freeTier: '免费试用额度',
-    link: 'https://bailian.console.aliyun.com/'
+    link: 'https://www.aliyun.com/benefit/scene/codingplan?scm=20140722.S_card@@%E6%B4%BB%E5%8A%A8@@4220167._.ID_card@@%E6%B4%BB%E5%8A%A8@@4220167-RL_codingplan-LOC_2024SPSearchCard-OR_ser-PAR1_2127e66a17744276040951204d0c48-V_4-RE_new13-P0_0-P1_0&source=5176.29345612&userCode=t6duaoe1'
   },
   {
     name: '腾讯云',
@@ -35,7 +35,7 @@ export const providers: Provider[] = [
       '完善的生态集成'
     ],
     freeTier: '免费体验包',
-    link: 'https://cloud.tencent.com/'
+    link: 'https://curl.qcloud.com/Z9TkzRuj'
   },
   {
     name: '火山方舟',
@@ -49,7 +49,7 @@ export const providers: Provider[] = [
       '丰富插件生态'
     ],
     freeTier: '50万 Tokens 免费',
-    link: 'https://www.volcengine.com/product/ark'
+    link: 'https://volcengine.com/L/wREW6vCIBBI'
   },
   {
     name: 'MiniMax',
@@ -63,7 +63,7 @@ export const providers: Provider[] = [
       '高效推理引擎'
     ],
     freeTier: '免费试用',
-    link: 'https://www.minimax.io/'
+    link: 'https://platform.minimaxi.com/subscribe/token-plan?code=8T7rWtR7CZ&source=link'
   },
   {
     name: '讯飞星火',
@@ -77,7 +77,7 @@ export const providers: Provider[] = [
       '行业解决方案'
     ],
     freeTier: '免费体验额度',
-    link: 'https://xinghuo.xfyun.cn/'
+    link: 'https://maas.xfyun.cn/packageSubscription?inviteCode=MAAS-D628AC34'
   },
   {
     name: '智谱 AI',
@@ -91,7 +91,21 @@ export const providers: Provider[] = [
       '开源模型支持'
     ],
     freeTier: '100万 Tokens 免费',
-    link: 'https://www.zhipuai.cn/'
+    link: 'https://www.bigmodel.cn/glm-coding?ic=RGTKPCFP0D'
+  },
+  {
+    name: '京东云',
+    enName: 'JD Cloud',
+    icon: '📦',
+    category: ['国内'],
+    features: [
+      '京东 AI 能力',
+      '电商场景优化',
+      '智能客服',
+      '数据安全保障'
+    ],
+    freeTier: '试用额度',
+    link: 'https://3.cn/2It-3fII'
   },
   {
     name: 'Moonshot AI',
@@ -133,7 +147,7 @@ export const providers: Provider[] = [
       '图像识别集成'
     ],
     freeTier: '免费体验',
-    link: 'https://cloud.baidu.com/'
+    link: 'https://cloud.baidu.com/campaign/ambassador-product/index.html?ambassadorId=ff638219f0f54a7a82e21d4aa7ad95ba#knowledge-model'
   },
   {
     name: '移动云',
@@ -147,7 +161,21 @@ export const providers: Provider[] = [
       '边缘计算支持'
     ],
     freeTier: '试用额度',
-    link: 'https://ecloud.10086.cn/'
+    link: 'https://ecloud.10086.cn/portal/act/codingplan'
+  },
+  {
+    name: '小米 MiMo',
+    enName: 'Xiaomi MiMo',
+    icon: '📱',
+    category: ['国内', 'LLM'],
+    features: [
+      '小米自研大模型',
+      '端云协同能力',
+      'IoT 场景优化',
+      '移动端适配'
+    ],
+    freeTier: 'token 套餐',
+    link: 'https://platform.xiaomimimo.com/#/token-plan'
   },
   {
     name: 'OpenRouter',
@@ -175,7 +203,7 @@ export const providers: Provider[] = [
       'SLA 保障'
     ],
     freeTier: '免费试用 $200',
-    link: 'https://azure.microsoft.com/'
+    link: 'https://azure.microsoft.com/zh-cn/products/ai-services/openai-service/'
   }
 ];
 
