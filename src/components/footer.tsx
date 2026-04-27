@@ -1,5 +1,5 @@
-import { Github } from "lucide-react";
-import Link from "next/link";
+import { Github } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export function Footer() {
   return (
@@ -11,13 +11,13 @@ export function Footer() {
         </p>
         <div className="flex justify-center gap-6 mb-8 flex-wrap">
           <Link
-            href="/"
+            to="/"
             className="text-text-secondary hover:text-primary-light text-sm transition-colors"
           >
             服务商列表
           </Link>
           <Link
-            href="/token-guide"
+            to="/token-guide"
             className="text-text-secondary hover:text-primary-light text-sm transition-colors"
           >
             Token 入门指南
@@ -43,5 +43,5 @@ export function Footer() {
         </p>
       </div>
     </footer>
-  );
+  )
 }

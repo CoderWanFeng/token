@@ -1,9 +1,6 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, BookOpen } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { Button } from './ui/button'
+import { ArrowRight, Sparkles, BookOpen } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export function Hero() {
   return (
@@ -18,36 +15,38 @@ export function Hero() {
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary-light text-sm font-medium mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary-light text-sm font-medium mb-8">
           <Sparkles className="w-4 h-4" />
           开发者工具箱
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
           <span className="gradient-text">找到最适合你的</span>
           <br />
-          <span className="text-text-primary">AI 开发计划</span>
+          <span className="text-text-primary">AI 流量套餐</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+        <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10">
           聚合各大云服务商的 Coding Plan 与 Token Plan，助你轻松对比免费额度、功能特色和定价方案，降低开发成本，加速项目落地。
         </p>
 
-        <div className="flex flex-wrap gap-4 justify-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-          <Button size="lg" asChild>
-            <a href="#providers">
+        <div className="flex flex-wrap gap-4 justify-center mb-12">
+          <a href="#providers">
+            <Button size="lg">
               浏览服务商
               <ArrowRight className="w-5 h-5" />
-            </a>
-          </Button>
-          <Button size="lg" variant="secondary" asChild>
-            <a href="#how-to-choose">如何选择</a>
-          </Button>
+            </Button>
+          </a>
+          <a href="#how-to-choose">
+            <Button size="lg" variant="secondary">
+              如何选择
+            </Button>
+          </a>
         </div>
 
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400">
+        <div className="mb-12">
           <Link 
-            href="/token-guide" 
+            to="/token-guide" 
             className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors text-sm"
           >
             <BookOpen className="w-4 h-4" />
@@ -55,14 +54,14 @@ export function Hero() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400">
-          <StatCard value="12+" label="热门云服务商" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <StatCard value="14+" label="热门云服务商" />
           <StatCard value="100K+" label="免费 Token 额度" />
           <StatCard value="100%" label="免费体验" />
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function StatCard({ value, label }: { value: string; label: string }) {
@@ -71,5 +70,5 @@ function StatCard({ value, label }: { value: string; label: string }) {
       <div className="text-5xl font-bold text-accent font-mono mb-2">{value}</div>
       <div className="text-text-secondary">{label}</div>
     </div>
-  );
+  )
 }

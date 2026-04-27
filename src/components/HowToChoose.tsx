@@ -1,7 +1,4 @@
-"use client";
-
-import { Search, BarChart3, Rocket } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Search, BarChart3, Rocket } from 'lucide-react'
 
 const steps = [
   {
@@ -22,7 +19,7 @@ const steps = [
     description: "注册并获取 API Key，快速集成到你的项目中。多数平台提供详细的文档和 SDK 支持。",
     icon: Rocket,
   },
-];
+]
 
 export function HowToChoose() {
   return (
@@ -37,16 +34,10 @@ export function HowToChoose() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {steps.map((step, index) => (
+          {steps.map((step) => (
             <div
               key={step.number}
-              className={cn(
-                "relative text-center p-10",
-                "bg-surface border border-border rounded-2xl",
-                "animate-in fade-in slide-in-from-bottom-4 duration-500",
-                "hover:border-primary/50 transition-colors duration-300"
-              )}
-              style={{ animationDelay: `${index * 150}ms` }}
+              className="relative text-center p-10 bg-surface border border-border rounded-2xl hover:border-primary/50 transition-colors duration-300"
             >
               <div className="w-16 h-16 mx-auto mb-6 rounded-full gradient-primary flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-primary/25">
                 {step.number}
@@ -60,5 +51,5 @@ export function HowToChoose() {
         </div>
       </div>
     </section>
-  );
+  )
 }

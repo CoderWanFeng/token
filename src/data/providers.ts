@@ -1,11 +1,11 @@
 export interface Provider {
-  name: string;
-  enName: string;
-  icon: string;
-  category: string[];
-  features: string[];
-  freeTier: string;
-  link: string;
+  name: string
+  enName: string
+  icon: string
+  category: string[]
+  features: string[]
+  freeTier: string
+  link: string
 }
 
 export const providers: Provider[] = [
@@ -205,7 +205,7 @@ export const providers: Provider[] = [
     freeTier: '免费试用 $200',
     link: 'https://azure.microsoft.com/zh-cn/products/ai-services/openai-service/'
   }
-];
+]
 
 export const filterOptions = [
   { id: 'all', label: '全部' },
@@ -213,4 +213,4 @@ export const filterOptions = [
   { id: '国际', label: '国际厂商' },
   { id: '免费额度高', label: '免费额度高' },
   { id: 'LLM', label: '大语言模型' },
-];
+]

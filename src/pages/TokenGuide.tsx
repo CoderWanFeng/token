@@ -1,33 +1,7 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, BookOpen, Calculator, Sparkles, CheckCircle, Lightbulb, Zap, Shield, DollarSign } from "lucide-react";
+import { Link } from 'react-router-dom'
+import { ArrowRight, BookOpen, Calculator, Sparkles, CheckCircle, Lightbulb, Zap, Shield, DollarSign } from 'lucide-react'
 
-export const metadata: Metadata = {
-  title: "Token 是什么？Coding Plan 有什么用？新手必读的 AI 开发入门指南",
-  description: "详细解释 Token 的定义、计费原理，以及为什么开发者需要关注 Coding Plan。从零开始了解 AI API 调用成本，免费额度申请攻略。",
-  keywords: [
-    "Token 是什么",
-    "AI Token 计费",
-    "Coding Plan 是什么",
-    "AI API 免费额度",
-    "大模型调用成本",
-    "程序员 AI 开发",
-    "API Token 计算",
-    "AI 开发入门",
-    "OpenAI Token",
-    "通义千问 Token",
-    "DeepSeek Token",
-    "智谱 AI Token",
-  ],
-  authors: [{ name: "程序员晚枫", url: "https://www.python-office.com" }],
-  openGraph: {
-    title: "Token 入门指南 | Coding Plan 对比",
-    description: "5分钟搞懂 Token 计费原理，节省 90% AI 开发成本",
-    url: "https://www.python-office.com/token-guide",
-  },
-};
-
-export default function TokenGuidePage() {
+export default function TokenGuide() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -47,7 +21,7 @@ export default function TokenGuidePage() {
             5 分钟搞懂 AI 开发的底层逻辑，让你从"AI 小白"变成"会省钱的高手"。
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/" className="btn btn-primary">
+            <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-0.5 transition-all">
               查看云服务商对比
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -301,7 +275,7 @@ export default function TokenGuidePage() {
           <p className="text-text-secondary mb-8 max-w-xl mx-auto">
             访问各大云服务商的 Coding Plan 对比页面，找到最适合你的免费额度方案。
           </p>
-          <Link href="/" className="btn btn-primary btn-lg">
+          <Link to="/" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-0.5 transition-all text-lg">
             查看 Coding Plan 对比
             <ArrowRight className="w-5 h-5" />
           </Link>
@@ -312,12 +286,12 @@ export default function TokenGuidePage() {
       <section className="py-8 border-t border-border">
         <div className="max-w-4xl mx-auto px-6">
           <nav className="text-sm text-text-secondary">
-            <Link href="/" className="hover:text-primary">首页</Link>
+            <Link to="/" className="hover:text-primary">首页</Link>
             <span className="mx-2">/</span>
             <span className="text-text-primary">Token 入门指南</span>
           </nav>
         </div>
       </section>
     </main>
-  );
+  )
 }

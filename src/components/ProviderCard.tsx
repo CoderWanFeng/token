@@ -1,11 +1,9 @@
-"use client";
-
-import { ExternalLink, ArrowRight, Check } from "lucide-react";
-import { cn } from "@/lib/utils";
-import type { Provider } from "@/data/providers";
+import { ArrowRight, Check } from 'lucide-react'
+import { cn } from '../lib/utils'
+import type { Provider } from '../data/providers'
 
 interface ProviderCardProps {
-  provider: Provider;
+  provider: Provider
 }
 
 export function ProviderCard({ provider }: ProviderCardProps) {
@@ -61,5 +59,5 @@ export function ProviderCard({ provider }: ProviderCardProps) {
         <ArrowRight className="w-4 h-4" />
       </a>
     </div>
-  );
+  )
 }
