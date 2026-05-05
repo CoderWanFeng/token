@@ -175,7 +175,7 @@ export const providers: Provider[] = [
       '移动端适配'
     ],
     freeTier: 'token 套餐',
-    link: 'https://platform.xiaomimimo.com/#/token-plan'
+    link: 'https://platform.xiaomimimo.com?ref=8QEVW6'
   },
   {
     name: 'OpenRouter',
