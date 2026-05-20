@@ -77,7 +77,7 @@ export const providers: Provider[] = [
       '行业解决方案'
     ],
     freeTier: '免费体验额度',
-    link: 'https://maas.xfyun.cn/packageSubscription?inviteCode=MAAS-D628AC34'
+    link: 'https://maas.xfyun.cn/modelSquare?ch=MaaS-CG-zs01?inviteCode=MAAS-D628AC34'
   },
   {
     name: '智谱 AI',
