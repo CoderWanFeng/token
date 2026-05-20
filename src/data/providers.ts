@@ -49,7 +49,7 @@ export const providers: Provider[] = [
       '丰富插件生态'
     ],
     freeTier: '50万 Tokens 免费',
-    link: 'https://volcengine.com/L/wREW6vCIBBI'
+    link: 'https://www.volcengine.com/activity/agentplan?utm_campaign=CG&utm_content=CG&utm_medium=CakeGrowth&utm_source=OWO&utm_term=CG&utm=cg&cgv=omklvl7n4d'
   },
   {
     name: 'MiniMax',
