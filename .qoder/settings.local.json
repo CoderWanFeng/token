@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(cd:*)",
+      "Bash(cd /opt/workplace/pro/token && git stash drop)",
+      "Bash(which vercel:*)"
+    ]
+  }
+}
