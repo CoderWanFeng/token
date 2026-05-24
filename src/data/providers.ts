@@ -21,7 +21,7 @@ export const providers: Provider[] = [
       '企业级安全认证'
     ],
     freeTier: '免费试用额度',
-    link: 'https://www.aliyun.com/benefit/scene/codingplan?scm=20140722.S_card@@%E6%B4%BB%E5%8A%A8@@4220167._.ID_card@@%E6%B4%BB%E5%8A%A8@@4220167-RL_codingplan-LOC_2024SPSearchCard-OR_ser-PAR1_2127e66a17744276040951204d0c48-V_4-RE_new13-P0_0-P1_0&source=5176.29345612&userCode=t6duaoe1'
+    link: 'https://www.aliyun.com/benefit/scene/codingplan?source=5176.29345612&userCode=t6duaoe1'
   },
   {
     name: '腾讯云',
