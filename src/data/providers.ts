@@ -94,6 +94,20 @@ export const providers: Provider[] = [
     link: 'https://www.bigmodel.cn/glm-coding?ic=RGTKPCFP0D'
   },
   {
+    name: 'CSDN',
+    enName: 'CSDN TaoToken',
+    icon: '💻',
+    category: ['国内', 'LLM'],
+    features: [
+      'TaoToken 代币体系',
+      'AI 模型调用',
+      '开发者社区',
+      '技术资源丰富'
+    ],
+    freeTier: '邀请奖励',
+    link: 'https://taotoken.net/?u=inv_z14nwqgl02o0zq8e&utm_source=tt_invite'
+  },
+  {
     name: '京东云',
     enName: 'JD Cloud',
     icon: '📦',
