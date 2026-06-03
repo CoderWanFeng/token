@@ -38,7 +38,7 @@ export const providers: Provider[] = [
     link: 'https://curl.qcloud.com/Z9TkzRuj'
   },
   {
-    name: '火山方舟',
+    name: '火山方舟的Token Plan',
     enName: 'Volcengine',
     icon: '🔥',
     category: ['国内', '免费额度高'],
@@ -50,6 +50,20 @@ export const providers: Provider[] = [
     ],
     freeTier: '50万 Tokens 免费',
     link: 'https://volcengine.com/L/hZRFoiCAVDE/'
+  },
+  {
+    name: '火山方舟的Agent Plan',
+    enName: 'Volcengine Agent Plan',
+    icon: '🧩',
+    category: ['国内', 'LLM'],
+    features: [
+      '智能体 Agent 框架',
+      '快速搭建 AI 应用',
+      '多模型灵活调度',
+      '可视化工作流编排'
+    ],
+    freeTier: '免费体验',
+    link: 'https://volcengine.cgref.cn/s/omklvl7n4d'
   },
   {
     name: 'MiniMax',
