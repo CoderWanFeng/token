@@ -23,7 +23,7 @@ export function Hero() {
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
           <span className="gradient-text">找到最适合你的</span>
           <br />
-          <span className="text-text-primary">AI 流量套餐</span>
+          <span className="text-text-primary">AI Coding Plan</span>
         </h1>
 
         <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10">
@@ -33,7 +33,7 @@ export function Hero() {
         <div className="flex flex-wrap gap-4 justify-center mb-12">
           <a href="#providers">
             <Button size="lg">
-              浏览服务商
+              立即挑选我的套餐
               <ArrowRight className="w-5 h-5" />
             </Button>
           </a>
