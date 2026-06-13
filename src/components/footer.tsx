@@ -6,8 +6,18 @@ export function Footer() {
   const [showTop, setShowTop] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setShowTop(window.scrollY > 400)
-    window.addEventListener('scroll', onScroll)
+    let ticking = false
+    const onScroll = () => {
+      // 合并到下一帧再 setState，避免每个 scroll 事件都触发 render
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setShowTop(window.scrollY > 400)
+        ticking = false
+      })
+    }
+    // passive: true 让浏览器不阻塞滚动（移动端尤其重要）
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 

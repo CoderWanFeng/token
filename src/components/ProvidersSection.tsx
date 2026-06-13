@@ -1,38 +1,41 @@
-import { useState, useEffect, useRef } from 'react'
-import { providers, filterOptions, type Provider } from '../data/providers'
+import { useMemo, useState } from 'react'
+import { providers, filterOptions } from '../data/providers'
 import { ProviderCard } from './ProviderCard'
 import { SlidersHorizontal, Zap } from 'lucide-react'
 import { cn } from '../lib/utils'
 
+// 模块级预算筛选计数（providers 是静态的，不需要每次 render 重算）
+const categoryCounts: Record<string, number> = { all: providers.length }
+for (const p of providers) {
+  for (const c of p.category) {
+    categoryCounts[c] = (categoryCounts[c] ?? 0) + 1
+  }
+}
+
+const PAGE_SIZE = 9
+const PAGE_STEP = 6
+
 export function ProvidersSection() {
-  const [activeFilter, setActiveFilter] = useState("all")
-  const [filteredProviders, setFilteredProviders] = useState<Provider[]>(providers)
-  const [mounted, setMounted] = useState(false)
-  const [visibleCount, setVisibleCount] = useState(9)
-  const sectionRef = useRef<HTMLElement>(null)
+  const [activeFilter, setActiveFilter] = useState('all')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  // 直接从 activeFilter 派生过滤结果，useEffect + setState 的反模式去掉
+  const filteredProviders = useMemo(
+    () =>
+      activeFilter === 'all'
+        ? providers
+        : providers.filter((p) => p.category.includes(activeFilter)),
+    [activeFilter],
+  )
 
-  useEffect(() => {
-    if (activeFilter === "all") {
-      setFilteredProviders(providers)
-    } else {
-      setFilteredProviders(
-        providers.filter((p) => p.category.includes(activeFilter))
-      )
-    }
-    setVisibleCount(9)
-  }, [activeFilter])
-
-  if (!mounted) return null
-
-  const visibleProviders = filteredProviders.slice(0, visibleCount)
+  const visibleProviders = useMemo(
+    () => filteredProviders.slice(0, visibleCount),
+    [filteredProviders, visibleCount],
+  )
   const hasMore = visibleCount < filteredProviders.length
 
   return (
-    <section id="providers" ref={sectionRef} className="relative py-28 overflow-hidden bg-white">
+    <section id="providers" className="relative py-28 overflow-hidden bg-white">
       {/* 吸顶筛选栏 */}
       <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -42,23 +45,24 @@ export function ProvidersSection() {
               <span>筛选分类</span>
             </div>
             <div className="flex flex-wrap gap-2.5">
-              {filterOptions.map((option) => (
-                <button
-                  key={option.id}
-                  onClick={() => setActiveFilter(option.id)}
-                  className={cn(
-                    "filter-btn",
-                    activeFilter === option.id && "active"
-                  )}
-                >
-                  {option.label}
-                  <span className="ml-2 text-xs opacity-70">
-                    {option.id === 'all' 
-                      ? providers.length 
-                      : providers.filter(p => p.category.includes(option.id)).length}
-                  </span>
-                </button>
-              ))}
+              {filterOptions.map((option) => {
+                const isActive = activeFilter === option.id
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => {
+                      setActiveFilter(option.id)
+                      setVisibleCount(PAGE_SIZE)
+                    }}
+                    className={cn('filter-btn', isActive && 'active')}
+                  >
+                    {option.label}
+                    <span className="ml-2 text-xs opacity-70">
+                      {categoryCounts[option.id] ?? 0}
+                    </span>
+                  </button>
+                )
+              })}
             </div>
             <div className="text-xs text-text-muted hidden md:block">
               共 {filteredProviders.length} 个服务商
@@ -66,7 +70,7 @@ export function ProvidersSection() {
           </div>
         </div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-6 mt-16">
         {/* 标题 */}
         <div className="text-center mb-14">
@@ -94,7 +98,7 @@ export function ProvidersSection() {
             {hasMore && (
               <div className="text-center mt-12">
                 <button
-                  onClick={() => setVisibleCount(c => c + 6)}
+                  onClick={() => setVisibleCount((c) => c + PAGE_STEP)}
                   className="btn-ghost px-8 py-3 rounded-xl text-sm font-medium"
                 >
                   加载更多（剩余 {filteredProviders.length - visibleCount} 个）

@@ -6,12 +6,13 @@
 
 ## 2. 技术栈
 
-- **框架**: Next.js 16.1.6，静态导出模式（`output: 'export'`）
-- **前端**: React 19.2.3 + TypeScript 5
-- **UI 组件**: Radix UI + shadcn/ui 模式
-- **样式**: Tailwind CSS 4 + tw-animate-css
+- **框架**: Vite 6 + React 18 + TypeScript 5
+- **路由**: React Router DOM v6
+- **前端**: React 18.3 + TypeScript ~5.6
+- **UI 组件**: 自定义组件 + shadcn/ui 风格 Button
+- **样式**: Tailwind CSS 3 + 自定义 CSS 动画（`src/index.css`）
 - **图标**: Lucide React
-- **工具库**: class-variance-authority, clsx, tailwind-merge
+- **工具库**: clsx, tailwind-merge
 
 ## 3. Design Language
 
@@ -84,27 +85,31 @@
 ## 8. Project Structure
 
 ```
-d:\code\token\
+/Users/wanfeng/code/opc-website/token/
 ├── src/
-│   ├── app/
-│   │   ├── globals.css      # 全局样式 + Tailwind
-│   │   ├── layout.tsx        # 根布局
-│   │   └── page.tsx          # 首页
+│   ├── App.tsx               # 路由配置（/ + /token-guide）
+│   ├── main.tsx              # 入口文件
+│   ├── index.css             # 全局样式 + Tailwind + 自定义动画
+│   ├── vite-env.d.ts        # Vite 类型声明
+│   ├── pages/
+│   │   ├── Home.tsx          # 首页（Hero + Providers + HowToChoose + Footer）
+│   │   └── TokenGuide.tsx   # Token 入门指南页
 │   ├── components/
 │   │   ├── ui/
-│   │   │   └── button.tsx    # Button 组件
-│   │   ├── hero.tsx          # Hero 区域
-│   │   ├── filter-section.tsx
-│   │   ├── provider-card.tsx
-│   │   ├── providers-section.tsx
-│   │   ├── how-to-choose.tsx
+│   │   │   └── button.tsx    # Button 组件（variant + size）
+│   │   ├── hero.tsx          # Hero 区域（统计数字动画）
+│   │   ├── ProvidersSection.tsx
+│   │   ├── ProviderCard.tsx  # 服务商卡片（渐变边框 + hover 动效）
+│   │   ├── HowToChoose.tsx
 │   │   └── footer.tsx
 │   ├── data/
-│   │   └── providers.ts      # 服务商数据
+│   │   └── providers.ts      # 16 家服务商数据
 │   └── lib/
-│       └── utils.ts          # 工具函数 (cn)
-├── next.config.ts             # Next.js 配置（静态导出）
+│       └── utils.ts          # cn() 工具函数
+├── index.html                # Vite 入口 HTML
+├── vite.config.ts            # Vite 配置
+├── tailwind.config.js
+├── postcss.config.js
 ├── tsconfig.json
-├── postcss.config.mjs
 └── package.json
 ```
