@@ -33,35 +33,7 @@ const USE_CASES: Array<{ id: UseCase; label: string; icon: typeof Code2 }> = [
   { id: '文本对话', label: '文本对话', icon: MessageCircle },
 ]
 
-// ============================================================
-// 推荐引擎（useMemo 调用，本地纯逻辑，不抽到 lib）
-// ============================================================
-
-function pickTop3(all: Provider[], role: TargetRole, useCases: UseCase[]): Provider[] {
-  // 1. 过滤：targetRoles 包含 role、useCases 至少一个交集（如果用户选了）
-  const filtered = all.filter((p) => {
-    const roleMatch = p.targetRoles?.includes(role) ?? false
-    const useCaseMatch =
-      useCases.length === 0 || useCases.some((uc) => p.useCases?.includes(uc))
-    return roleMatch && useCaseMatch
-  })
-  // 2. 排序：costEfficiency 降序，没分的排后面
-  return [...filtered]
-    .sort((a, b) => (b.costEfficiency ?? 0) - (a.costEfficiency ?? 0))
-    .slice(0, 3)
-}
-
-// 根据月用量 + 档位数组估算月费（元）
-function estimateMonthlyCost(p: Provider, monthlyTokensM: number): number | null {
-  if (monthlyTokensM <= 0 || !p.pricingTiers || p.pricingTiers.length === 0) return null
-  const tokens = monthlyTokensM * 1_000_000
-  // 找档位：tokens 大于等于需求量的最低档；没有的话用最高档
-  const tier =
-    p.pricingTiers.find((t) => t.tokens >= tokens) ??
-    p.pricingTiers[p.pricingTiers.length - 1]
-  const overage = Math.max(0, tokens - tier.tokens)
-  return tier.monthlyFee + (overage / 1000) * tier.unitPrice
-}
+// 推荐引擎 + 月费估算抽到 lib/recommend.ts（多页面复用）
 
 // ============================================================
 // 主组件
@@ -82,7 +54,7 @@ export function SmartGuide() {
   }
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-surface-light/40 to-background">
+    <section id="smart-guide" className="py-20 px-4 bg-gradient-to-b from-surface-light/40 to-background">
       <div className="max-w-6xl mx-auto">
         {/* 标题 */}
         <div className="text-center mb-12">
