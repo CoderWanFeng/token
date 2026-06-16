@@ -1,10 +1,10 @@
 import { ArrowRight, BookOpen, Coins, Lightbulb, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { BillingSteps } from '../components/BillingSteps'
-import { BenefitsGrid } from '../components/BenefitsGrid'
-import { PricingTable } from '../components/PricingTable'
-import { Faq } from '../components/Faq'
+import { BillingSteps } from './TokenGuide/BillingSteps'
+import { BenefitsGrid } from './TokenGuide/BenefitsGrid'
+import { PricingTable } from './TokenGuide/PricingTable'
+import { Faq } from './TokenGuide/Faq'
 
 export default function TokenGuide() {
   return (
