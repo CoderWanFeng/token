@@ -16,6 +16,7 @@ import {
   type TargetRole,
   type UseCase,
 } from '../../data/providers'
+import { pickTop3, estimateMonthlyCost } from '../../lib/recommend'
 
 // ============================================================
 // 常量（模块级，避免每次 render 重建）

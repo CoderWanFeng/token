@@ -46,18 +46,26 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-text-primary mb-4">快速导航</h4>
             <div className="space-y-2.5">
-              <a href="#providers" className={linkStyle}>
+              <Link to="/" className={linkStyle}>
                 <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
-                服务商列表
-              </a>
+                智能导购
+              </Link>
+              <Link to="/compare" className={linkStyle}>
+                <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
+                实时比价看板
+              </Link>
+              <Link to="/calculator" className={linkStyle}>
+                <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
+                Token 消耗计算器
+              </Link>
+              <Link to="/reviews" className={linkStyle}>
+                <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
+                评测与避坑
+              </Link>
               <Link to="/token-guide" className={linkStyle}>
                 <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
                 Token 入门指南
               </Link>
-              <a href="#how-to-choose" className={linkStyle}>
-                <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
-                快速选型指南
-              </a>
             </div>
           </div>
 
