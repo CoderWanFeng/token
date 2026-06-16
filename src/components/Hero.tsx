@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Button } from './ui/button'
+import { Button } from './Button'
 import { ArrowRight, Sparkles, Zap, BookOpen } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -25,15 +25,31 @@ function StatCounter({ value, label, delay }: { value: string; label: string; de
 }
 
 export function Hero() {
+  const heroRef = useRef<HTMLElement>(null)
+  // 离开视口就停掉下面的无限动画，省 GPU；初始 true 保证首屏能正常起手
+  const [isInView, setIsInView] = useState(true)
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return
+    const el = heroRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* 背景装饰 */}
       <div className="absolute inset-0 mesh-bg dot-grid opacity-40" />
-      
-      {/* 轻量光球 */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl animate-[float_8s_ease-in-out_infinite]" />
-      <div className="absolute top-1/3 -right-32 w-80 h-80 rounded-full bg-accent/8 blur-3xl animate-[float_10s_ease-in-out_infinite]" />
-      <div className="absolute -bottom-32 left-1/3 w-72 h-72 rounded-full bg-secondary/6 blur-3xl animate-[float_7s_ease-in-out_infinite]" />
+
+      {/* 轻量光球：仅在视口内 + 用户没开 reduce-motion 时才无限循环 */}
+      <div className={`absolute -top-32 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl ${isInView ? 'motion-safe:animate-[float_8s_ease-in-out_infinite]' : ''}`} />
+      <div className={`absolute top-1/3 -right-32 w-80 h-80 rounded-full bg-accent/8 blur-3xl ${isInView ? 'motion-safe:animate-[float_10s_ease-in-out_infinite]' : ''}`} />
+      <div className={`absolute -bottom-32 left-1/3 w-72 h-72 rounded-full bg-secondary/6 blur-3xl ${isInView ? 'motion-safe:animate-[float_7s_ease-in-out_infinite]' : ''}`} />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pb-24 pt-36">
         {/* 标签 */}
@@ -60,18 +76,18 @@ export function Hero() {
 
         {/* CTA */}
         <div className="flex flex-wrap gap-4 justify-center mb-14">
-          <a href="#providers" className="group">
+          <a href="#smart-guide" className="group">
             <Button size="lg" className="group-hover:shadow-button-hover">
               立即挑选套餐
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </a>
-          <a href="#how-to-choose">
+          <Link to="/calculator">
             <Button size="lg" variant="secondary">
               <Zap className="w-4 h-4" />
-              快速选型指南
+              算算我要花多少
             </Button>
-          </a>
+          </Link>
         </div>
 
         {/* Token 入门链接 */}

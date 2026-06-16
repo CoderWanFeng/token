@@ -6,8 +6,18 @@ export function Footer() {
   const [showTop, setShowTop] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setShowTop(window.scrollY > 400)
-    window.addEventListener('scroll', onScroll)
+    let ticking = false
+    const onScroll = () => {
+      // 合并到下一帧再 setState，避免每个 scroll 事件都触发 render
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setShowTop(window.scrollY > 400)
+        ticking = false
+      })
+    }
+    // passive: true 让浏览器不阻塞滚动（移动端尤其重要）
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -36,18 +46,26 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-text-primary mb-4">快速导航</h4>
             <div className="space-y-2.5">
-              <a href="#providers" className={linkStyle}>
+              <Link to="/" className={linkStyle}>
                 <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
-                服务商列表
-              </a>
+                智能导购
+              </Link>
+              <Link to="/compare" className={linkStyle}>
+                <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
+                实时比价看板
+              </Link>
+              <Link to="/calculator" className={linkStyle}>
+                <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
+                Token 消耗计算器
+              </Link>
+              <Link to="/reviews" className={linkStyle}>
+                <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
+                评测与避坑
+              </Link>
               <Link to="/token-guide" className={linkStyle}>
                 <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
                 Token 入门指南
               </Link>
-              <a href="#how-to-choose" className={linkStyle}>
-                <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 transition-all" />
-                快速选型指南
-              </a>
             </div>
           </div>
 

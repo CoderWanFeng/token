@@ -211,3 +211,15 @@
     text-wrap: balance;
   }
 }
+
+/* 尊重用户的减少动效偏好（无障碍 + 低端机性能） */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

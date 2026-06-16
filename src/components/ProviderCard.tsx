@@ -2,18 +2,20 @@ import { ArrowRight, Zap, Star, ExternalLink } from 'lucide-react'
 import { cn } from '../lib/utils'
 import type { Provider } from '../data/providers'
 
+// 模块级常量：分类 → 标签配色，render 期间不会变
+const CATEGORY_COLOR_MAP: Record<string, string> = {
+  '国内': 'bg-blue-50 text-blue-600 border-blue-200',
+  '国际': 'bg-purple-50 text-purple-600 border-purple-200',
+  '免费额度高': 'bg-emerald-50 text-emerald-600 border-emerald-200',
+  'LLM': 'bg-amber-50 text-amber-600 border-amber-200',
+}
+
 interface ProviderCardProps {
   provider: Provider
   index?: number
 }
 
 export function ProviderCard({ provider, index = 0 }: ProviderCardProps) {
-  const categoryColorMap: Record<string, string> = {
-    '国内': 'bg-blue-50 text-blue-600 border-blue-200',
-    '国际': 'bg-purple-50 text-purple-600 border-purple-200',
-    '免费额度高': 'bg-emerald-50 text-emerald-600 border-emerald-200',
-    'LLM': 'bg-amber-50 text-amber-600 border-amber-200',
-  }
 
   return (
     <div
@@ -41,7 +43,7 @@ export function ProviderCard({ provider, index = 0 }: ProviderCardProps) {
               key={cat}
               className={cn(
                 "px-2.5 py-0.5 rounded-full text-xs font-medium border",
-                categoryColorMap[cat] || "bg-gray-50 text-text-muted border-gray-200"
+                CATEGORY_COLOR_MAP[cat] || "bg-gray-50 text-text-muted border-gray-200"
               )}
             >
               {cat}
