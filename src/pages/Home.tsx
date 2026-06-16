@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { Hero } from '../components/hero'
 import { ProvidersSection } from '../components/ProvidersSection'
 import { HowToChoose } from '../components/HowToChoose'
-import { Footer } from '../components/footer'
+import { Footer } from '../components/Footer'
 
 export default function Home() {
   return (

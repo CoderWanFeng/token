@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Button } from './ui/button'
+import { Button } from './Button'
 import { ArrowRight, Sparkles, Zap, BookOpen } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
