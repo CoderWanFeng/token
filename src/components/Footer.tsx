@@ -1,25 +1,20 @@
-import { Github, ArrowUp, ExternalLink } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { Github, ArrowUp, ExternalLink, Pencil } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
+import { useScrollThreshold } from '../hooks/useScrollThreshold'
+
+const REPO_EDIT_URL = 'https://github.com/CoderWanFeng/token/edit/master/src'
+
+const routeFileMap: Record<string, string> = {
+  '/': '/pages/Home.tsx',
+  '/token-guide': '/pages/TokenGuide.tsx',
+  '/compare': '/pages/Compare.tsx',
+  '/calculator': '/pages/Calculator.tsx',
+  '/reviews': '/pages/Reviews.tsx',
+}
 
 export function Footer() {
-  const [showTop, setShowTop] = useState(false)
-
-  useEffect(() => {
-    let ticking = false
-    const onScroll = () => {
-      // 合并到下一帧再 setState，避免每个 scroll 事件都触发 render
-      if (ticking) return
-      ticking = true
-      requestAnimationFrame(() => {
-        setShowTop(window.scrollY > 400)
-        ticking = false
-      })
-    }
-    // passive: true 让浏览器不阻塞滚动（移动端尤其重要）
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  const showTop = useScrollThreshold(400)
+  const location = useLocation()
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -86,7 +81,17 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com"
+              href={`${REPO_EDIT_URL}${routeFileMap[location.pathname] ?? '/'}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs text-text-muted hover:text-primary transition-colors"
+              aria-label="在 GitHub 上编辑此页"
+            >
+              <Pencil className="w-3.5 h-3.5" />
+              <span>编辑此页</span>
+            </a>
+            <a
+              href="https://github.com/CoderWanFeng/token"
               target="_blank"
               rel="noopener noreferrer"
               className="text-text-muted hover:text-primary transition-colors"

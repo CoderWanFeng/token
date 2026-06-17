@@ -11,7 +11,26 @@ const Reviews = lazy(() => import('./pages/Reviews'))
 
 function App() {
   return (
-    <Suspense
+    <div>
+      {/* GitHub Octocat - 右上角 */}
+      <a
+        href="https://github.com/CoderWanFeng/token"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        className="fixed top-4 right-4 z-50 w-8 h-8 rounded-full overflow-hidden shadow-md hover:shadow-lg hover:scale-110 transition-all duration-200"
+      >
+        <img
+          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+          alt="GitHub"
+          className="w-full h-full object-cover"
+          loading="lazy"
+          width="32"
+          height="32"
+        />
+      </a>
+
+      <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center bg-background">
           <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
@@ -27,6 +46,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
+    </div>
   )
 }
 
