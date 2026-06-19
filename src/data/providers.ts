@@ -6,10 +6,25 @@ import linkMapJson from './provider-links.json'
 // ============================================================
 
 /** 适合身份（智能导购 Step 1） */
-export type TargetRole = '个人开发者' | '团队 Leader' | '企业 IT'
+export type TargetRole =
+  | '个人开发者'
+  | '学生'
+  | '内容创作者'
+  | '研究人员'
+  | '产品/运营'
+  | '小微企业主'
+  | '团队 Leader'
+  | '企业 IT'
 
 /** 擅长场景（智能导购 Step 2） */
-export type UseCase = '写代码' | '跑 Agent' | '文本对话'
+export type UseCase =
+  | '写代码'
+  | '跑 Agent'
+  | '文本对话'
+  | '生成图片'
+  | '生成视频'
+  | '文档处理'
+  | '语音交互'
 
 /** 支持的 IDE/客户端 */
 export type IdeClient = 'Cursor' | 'Claude Code' | 'Cline' | 'OpenClaw' | 'VS Code' | 'JetBrains'
@@ -116,8 +131,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
     ],
     freeTier: '免费试用额度',
     // 核心 4 字段
-    targetRoles: ['个人开发者', '团队 Leader', '企业 IT'],
-    useCases: ['写代码', '跑 Agent', '文本对话'],
+    targetRoles: ['个人开发者', '学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader', '企业 IT'],
+    useCases: ['写代码', '跑 Agent', '文本对话', '生成图片', '生成视频', '文档处理'],
     monthlyFee: 0,
     freeMonthlyTokens: 1_000_000,
     // 高级字段（Top 5）
@@ -150,8 +165,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '完善的生态集成',
     ],
     freeTier: '免费体验包',
-    targetRoles: ['团队 Leader', '企业 IT'],
-    useCases: ['写代码', '文本对话'],
+    targetRoles: ['个人开发者', '学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader', '企业 IT'],
+    useCases: ['写代码', '文本对话', '文档处理', '生成图片'],
     monthlyFee: 0,
     freeMonthlyTokens: 200_000,
   },
@@ -167,8 +182,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '丰富插件生态',
     ],
     freeTier: '50万 Tokens 免费',
-    targetRoles: ['个人开发者', '团队 Leader'],
-    useCases: ['写代码', '跑 Agent'],
+    targetRoles: ['个人开发者', '学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader'],
+    useCases: ['写代码', '跑 Agent', '文本对话', '生成图片', '文档处理'],
     monthlyFee: 0,
     freeMonthlyTokens: 500_000,
     // 高级字段（Top 5）
@@ -201,8 +216,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '可视化工作流编排',
     ],
     freeTier: '免费体验',
-    targetRoles: ['个人开发者', '团队 Leader'],
-    useCases: ['跑 Agent'],
+    targetRoles: ['个人开发者', '学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader'],
+    useCases: ['跑 Agent', '文本对话'],
     monthlyFee: 0,
     freeMonthlyTokens: 0,
   },
@@ -218,8 +233,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '高效推理引擎',
     ],
     freeTier: '免费试用',
-    targetRoles: ['个人开发者', '团队 Leader'],
-    useCases: ['文本对话', '跑 Agent'],
+    targetRoles: ['个人开发者', '学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader'],
+    useCases: ['文本对话', '跑 Agent', '语音交互'],
     monthlyFee: 0,
     freeMonthlyTokens: 0,
   },
@@ -235,8 +250,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '行业解决方案',
     ],
     freeTier: '免费体验额度',
-    targetRoles: ['团队 Leader', '企业 IT'],
-    useCases: ['文本对话', '跑 Agent'],
+    targetRoles: ['学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader', '企业 IT'],
+    useCases: ['文本对话', '跑 Agent', '语音交互'],
     monthlyFee: 0,
     freeMonthlyTokens: 0,
   },
@@ -286,8 +301,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '技术资源丰富',
     ],
     freeTier: '邀请奖励',
-    targetRoles: ['个人开发者'],
-    useCases: ['写代码', '文本对话'],
+    targetRoles: ['个人开发者', '学生'],
+    useCases: ['写代码', '文本对话', '文档处理'],
     monthlyFee: 0,
     freeMonthlyTokens: 0,
   },
@@ -303,8 +318,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '数据安全保障',
     ],
     freeTier: '试用额度',
-    targetRoles: ['企业 IT'],
-    useCases: ['文本对话'],
+    targetRoles: ['内容创作者', '产品/运营', '小微企业主', '企业 IT'],
+    useCases: ['文本对话', '生成图片', '文档处理'],
     monthlyFee: 0,
     freeMonthlyTokens: 0,
   },
@@ -320,8 +335,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '友好的 API 设计',
     ],
     freeTier: '送 15元 API 额度',
-    targetRoles: ['个人开发者', '团队 Leader'],
-    useCases: ['写代码', '文本对话'],
+    targetRoles: ['个人开发者', '学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader'],
+    useCases: ['写代码', '文本对话', '文档处理'],
     monthlyFee: 0,
     freeMonthlyTokens: 1_500_000,
   },
@@ -337,8 +352,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '开源模型可选',
     ],
     freeTier: '10元免费额度',
-    targetRoles: ['个人开发者', '团队 Leader'],
-    useCases: ['写代码', '跑 Agent', '文本对话'],
+    targetRoles: ['个人开发者', '学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader', '企业 IT'],
+    useCases: ['写代码', '跑 Agent', '文本对话', '生成图片', '文档处理'],
     monthlyFee: 0,
     freeMonthlyTokens: 1_000_000,
     // 高级字段（Top 5）
@@ -370,8 +385,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '图像识别集成',
     ],
     freeTier: '免费体验',
-    targetRoles: ['企业 IT'],
-    useCases: ['文本对话', '跑 Agent'],
+    targetRoles: ['内容创作者', '研究人员', '产品/运营', '小微企业主', '企业 IT'],
+    useCases: ['文本对话', '生成图片', '文档处理'],
     monthlyFee: 0,
     freeMonthlyTokens: 0,
   },
@@ -387,8 +402,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '边缘计算支持',
     ],
     freeTier: '试用额度',
-    targetRoles: ['企业 IT'],
-    useCases: ['文本对话'],
+    targetRoles: ['小微企业主', '企业 IT'],
+    useCases: ['文本对话', '文档处理'],
     monthlyFee: 0,
     freeMonthlyTokens: 0,
   },
@@ -458,8 +473,8 @@ const providersBase: Omit<Provider, 'link'>[] = [
       'SLA 保障',
     ],
     freeTier: '免费试用 $200',
-    targetRoles: ['企业 IT'],
-    useCases: ['写代码', '跑 Agent', '文本对话'],
+    targetRoles: ['内容创作者', '研究人员', '产品/运营', '小微企业主', '企业 IT'],
+    useCases: ['写代码', '跑 Agent', '文本对话', '生成图片', '生成视频', '文档处理'],
     monthlyFee: 0,
     freeMonthlyTokens: 0,
   },

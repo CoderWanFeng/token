@@ -9,6 +9,15 @@ import {
   Bot,
   MessageCircle,
   Trophy,
+  GraduationCap,
+  PenLine,
+  FlaskConical,
+  Briefcase,
+  Store,
+  Image,
+  Video,
+  FileText,
+  Mic,
 } from 'lucide-react'
 import {
   providers,
@@ -16,7 +25,7 @@ import {
   type TargetRole,
   type UseCase,
 } from '../../data/providers'
-import { pickTop3, estimateMonthlyCost } from '../../lib/recommend'
+import { pickTop3, dailyMinutesToMonthlyTokensM, estimateMonthlyCost } from '../../lib/recommend'
 
 // ============================================================
 // 常量（模块级，避免每次 render 重建）
@@ -24,6 +33,11 @@ import { pickTop3, estimateMonthlyCost } from '../../lib/recommend'
 
 const ROLES: Array<{ id: TargetRole; label: string; icon: typeof User }> = [
   { id: '个人开发者', label: '个人开发者', icon: User },
+  { id: '学生', label: '学生', icon: GraduationCap },
+  { id: '内容创作者', label: '内容创作者', icon: PenLine },
+  { id: '研究人员', label: '研究人员', icon: FlaskConical },
+  { id: '产品/运营', label: '产品 / 运营', icon: Briefcase },
+  { id: '小微企业主', label: '小微企业主', icon: Store },
   { id: '团队 Leader', label: '团队 Leader', icon: Users },
   { id: '企业 IT', label: '企业 IT', icon: Building2 },
 ]
@@ -32,6 +46,10 @@ const USE_CASES: Array<{ id: UseCase; label: string; icon: typeof Code2 }> = [
   { id: '写代码', label: '写代码', icon: Code2 },
   { id: '跑 Agent', label: '跑 Agent', icon: Bot },
   { id: '文本对话', label: '文本对话', icon: MessageCircle },
+  { id: '生成图片', label: '生成图片', icon: Image },
+  { id: '生成视频', label: '生成视频', icon: Video },
+  { id: '文档处理', label: '文档处理', icon: FileText },
+  { id: '语音交互', label: '语音交互', icon: Mic },
 ]
 
 // 推荐引擎 + 月费估算抽到 lib/recommend.ts（多页面复用）
@@ -43,7 +61,12 @@ const USE_CASES: Array<{ id: UseCase; label: string; icon: typeof Code2 }> = [
 export function SmartGuide() {
   const [role, setRole] = useState<TargetRole | null>(null)
   const [useCases, setUseCases] = useState<UseCase[]>([])
-  const [monthlyTokensM, setMonthlyTokensM] = useState<number>(0)
+  const [dailyMinutes, setDailyMinutes] = useState<number>(0)
+
+  const monthlyTokensM = useMemo(
+    () => dailyMinutesToMonthlyTokensM(dailyMinutes, useCases),
+    [dailyMinutes, useCases],
+  )
 
   const recommendations = useMemo(
     () => (role ? pickTop3(providers, role, useCases) : []),
@@ -131,12 +154,12 @@ export function SmartGuide() {
           </div>
         </div>
 
-        {/* Step 3: 月用量（可选） */}
+        {/* Step 3: 每日使用时长（可选） */}
         <div className="mb-12">
           <div className="flex items-baseline gap-2 mb-3">
             <span className="text-xs font-bold text-primary">STEP 3（可选）</span>
             <h3 className="text-sm font-semibold text-text-muted uppercase tracking-wider">
-              月 token 用量预估
+              每天用多久？
             </h3>
           </div>
           <div className="flex items-center gap-3 max-w-md">
@@ -144,17 +167,17 @@ export function SmartGuide() {
               type="number"
               min={0}
               step={0.5}
-              value={monthlyTokensM || ''}
-              onChange={(e) => setMonthlyTokensM(Number(e.target.value) || 0)}
-              placeholder="比如 5"
+              value={dailyMinutes || ''}
+              onChange={(e) => setDailyMinutes(Number(e.target.value) || 0)}
+              placeholder="比如 1"
               className="flex-1 px-4 py-3 rounded-xl border-2 border-border bg-white text-text-primary focus:border-primary focus:outline-none transition-colors"
             />
             <span className="text-text-secondary font-medium whitespace-nowrap">
-              M tokens / 月
+              小时 / 天
             </span>
           </div>
           <p className="text-xs text-text-muted mt-2">
-            留空也推荐，填了能算出月费
+            留空也能推荐，填了能看到更准的月费
           </p>
         </div>
 
@@ -183,6 +206,7 @@ export function SmartGuide() {
                     key={p.name}
                     provider={p}
                     rank={idx + 1}
+                    dailyMinutes={dailyMinutes}
                     monthlyTokensM={monthlyTokensM}
                   />
                 ))}
@@ -202,14 +226,16 @@ export function SmartGuide() {
 function RecommendationCard({
   provider: p,
   rank,
+  dailyMinutes,
   monthlyTokensM,
 }: {
   provider: Provider
   rank: number
+  dailyMinutes: number
   monthlyTokensM: number
 }) {
   const estimatedCost = useMemo(
-    () => estimateMonthlyCost(p, monthlyTokensM),
+    () => (monthlyTokensM > 0 ? estimateMonthlyCost(p, monthlyTokensM) : null),
     [p, monthlyTokensM],
   )
 
@@ -259,7 +285,7 @@ function RecommendationCard({
               <span className="text-sm font-normal text-text-muted"> /月</span>
             </div>
             <div className="text-xs text-text-muted mt-1">
-              基于 {monthlyTokensM}M tokens 预估
+              基于每天 {dailyMinutes} 小时预估
             </div>
           </>
         ) : (
