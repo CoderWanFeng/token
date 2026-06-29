@@ -76,6 +76,12 @@ export interface Provider {
 
   /** 避坑提示 —— 评测与避坑 */
   gotchas?: string[]
+
+  /** 折扣角标（如 75 → 显示「7.5折」，红色渐变） —— 卡片右上角 */
+  discount?: number
+
+  /** 价格标签（自定义文案，如「低至9.4元」，紫色渐变） —— 卡片右上角 */
+  priceTag?: string
 }
 
 // ============================================================
@@ -137,6 +143,7 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '通义千问 Max 仅对企业用户开放',
       '跨境调用需要额外配置',
     ],
+    discount: 75,
   },
   {
     name: '腾讯云',
@@ -188,6 +195,7 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '豆包 Pro 在代码任务表现一般',
       '需通过专属链接激活',
     ],
+    priceTag: '低至9.4元',
   },
   {
     name: '火山方舟的Agent Plan',
@@ -222,6 +230,7 @@ const providersBase: Omit<Provider, 'link'>[] = [
     useCases: ['文本对话', '跑 Agent'],
     monthlyFee: 0,
     freeMonthlyTokens: 0,
+    discount: 90,
   },
   {
     name: '讯飞星火',

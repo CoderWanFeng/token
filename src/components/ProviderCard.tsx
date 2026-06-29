@@ -23,16 +23,47 @@ export function ProviderCard({ provider, index = 0 }: ProviderCardProps) {
       style={{ animationDelay: `${index * 80}ms`, animation: `fadeInUp 0.5s ease-out ${index * 80}ms both` }}
     >
       <div className="relative p-7 h-full flex flex-col">
+        {/* 右上角：折扣角标 + 价格标签（错开堆叠） */}
+        {(provider.discount || provider.priceTag) && (
+          <div className="absolute top-4 right-4 flex flex-col items-end gap-1.5 z-10">
+            {provider.discount !== undefined && (
+              <span
+                className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold text-white shadow-md"
+                style={{
+                  background: 'linear-gradient(135deg, #EF4444, #F97316)',
+                }}
+              >
+                {(provider.discount / 10).toFixed(provider.discount % 10 === 0 ? 0 : 1)}折
+              </span>
+            )}
+            {provider.priceTag && (
+              <span
+                className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold text-white shadow-md"
+                style={{
+                  background: 'linear-gradient(135deg, #8B5CF6, #6366F1)',
+                }}
+              >
+                {provider.priceTag}
+              </span>
+            )}
+          </div>
+        )}
+
         {/* 图标 + 信息 */}
-        <div className="flex items-center gap-4 mb-5">
-          <div className="w-14 h-14 flex items-center justify-center text-3xl rounded-2xl bg-primary/5 border border-primary/10 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-300">
+        <div
+          className={cn(
+            "flex items-center gap-4 mb-5",
+            (provider.discount || provider.priceTag) && "pr-20"
+          )}
+        >
+          <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center text-3xl rounded-2xl bg-primary/5 border border-primary/10 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-300">
             {provider.icon}
           </div>
-          <div>
-            <h3 className="text-lg font-bold text-text-primary group-hover:text-primary transition-colors duration-300">
+          <div className="min-w-0">
+            <h3 className="text-lg font-bold text-text-primary group-hover:text-primary transition-colors duration-300 break-words">
               {provider.name}
             </h3>
-            <p className="text-xs text-text-muted mt-0.5">{provider.enName}</p>
+            <p className="text-xs text-text-muted mt-0.5 break-words">{provider.enName}</p>
           </div>
         </div>
 
