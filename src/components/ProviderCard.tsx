@@ -23,6 +23,22 @@ export function ProviderCard({ provider, index = 0 }: ProviderCardProps) {
       style={{ animationDelay: `${index * 80}ms`, animation: `fadeInUp 0.5s ease-out ${index * 80}ms both` }}
     >
       <div className="relative p-7 h-full flex flex-col">
+        {/* 折扣角标 */}
+        {provider.discount && (
+          <div className="absolute top-3 right-3 px-3 py-1.5 rounded-full bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold shadow-lg">
+            {(provider.discount / 10).toFixed(provider.discount % 10 === 0 ? 0 : 1)}折
+          </div>
+        )}
+
+        {/* 价格标签 */}
+        {provider.priceTag && (
+          <div
+            className="absolute px-3 py-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs font-bold shadow-lg"
+            style={{ top: provider.discount ? '36px' : '12px', right: '12px' }}
+          >
+            {provider.priceTag}
+          </div>
+        )}
         {/* 图标 + 信息 */}
         <div className="flex items-center gap-4 mb-5">
           <div className="w-14 h-14 flex items-center justify-center text-3xl rounded-2xl bg-primary/5 border border-primary/10 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-300">

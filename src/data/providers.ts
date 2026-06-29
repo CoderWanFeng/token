@@ -91,6 +91,12 @@ export interface Provider {
 
   /** 避坑提示 —— 评测与避坑 */
   gotchas?: string[]
+
+  /** 折扣标签（如 75 表示 7.5 折）—— 卡片角标 */
+  discount?: number
+
+  /** 价格标签（如"低至9.4元"）—— 卡片右上角 */
+  priceTag?: string
 }
 
 // ============================================================
@@ -130,6 +136,7 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '企业级安全认证',
     ],
     freeTier: '免费试用额度',
+    discount: 75,
     // 核心 4 字段
     targetRoles: ['个人开发者', '学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader', '企业 IT'],
     useCases: ['写代码', '跑 Agent', '文本对话', '生成图片', '生成视频', '文档处理'],
@@ -182,6 +189,7 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '丰富插件生态',
     ],
     freeTier: '50万 Tokens 免费',
+    priceTag: '低至9.4元',
     targetRoles: ['个人开发者', '学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader'],
     useCases: ['写代码', '跑 Agent', '文本对话', '生成图片', '文档处理'],
     monthlyFee: 0,
@@ -233,6 +241,7 @@ const providersBase: Omit<Provider, 'link'>[] = [
       '高效推理引擎',
     ],
     freeTier: '免费试用',
+    discount: 90,
     targetRoles: ['个人开发者', '学生', '内容创作者', '研究人员', '产品/运营', '小微企业主', '团队 Leader'],
     useCases: ['文本对话', '跑 Agent', '语音交互'],
     monthlyFee: 0,
