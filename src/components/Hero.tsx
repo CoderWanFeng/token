@@ -76,7 +76,7 @@ export function Hero() {
 
         {/* CTA */}
         <div className="flex flex-wrap gap-4 justify-center mb-14">
-          <a href="#smart-guide" className="group">
+          <a href="#providers" className="group">
             <Button size="lg" className="group-hover:shadow-button-hover">
               立即挑选套餐
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -85,7 +85,7 @@ export function Hero() {
           <Link to="/calculator">
             <Button size="lg" variant="secondary">
               <Zap className="w-4 h-4" />
-              算算我要花多少
+              帮我选最划算的
             </Button>
           </Link>
         </div>

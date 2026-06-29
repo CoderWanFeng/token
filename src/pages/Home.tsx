@@ -8,50 +8,52 @@ import { Footer } from '../components/Footer'
 import { SmartGuide } from './Home/SmartGuide'
 
 export default function Home() {
-  const [showAllProviders, setShowAllProviders] = useState(false)
+  const [showSmartGuide, setShowSmartGuide] = useState(false)
 
   return (
     <>
       <Helmet>
-        <title>Coding Plan 智能导购 - 3 步找到最划算的 AI 开发方案</title>
+        <title>AI Token 优惠聚合 - 各大云服务商 Coding Plan 一站对比</title>
         <meta
           name="description"
-          content="3 步问答式智能导购：你的身份 + 主要用途 + 月用量，自动匹配 16+ 主流 AI 云服务商中最划算的 Coding Plan，避免买贵了浪费。"
+          content="聚合 16+ 主流 AI 云服务商的 Token 优惠信息：免费额度、套餐价格、模型能力一站对比，找到最划算的 AI Coding Plan。"
         />
-        <meta property="og:title" content="Coding Plan 智能导购 - 找到最划算的 AI 编程方案" />
+        <meta property="og:title" content="AI Token 优惠聚合 - 各大云服务商 Coding Plan 一站对比" />
         <meta
           property="og:description"
-          content="回答 3 个问题，自动推荐最划算的 Plan。覆盖 DeepSeek、智谱、火山方舟、阿里云百炼等 16+ 主流平台。"
+          content="DeepSeek、智谱、火山方舟、阿里云百炼等 16+ 主流平台 Token 优惠实时更新，免费额度 + 套餐价格一站对比。"
         />
         <meta property="og:type" content="website" />
       </Helmet>
       <main className="min-h-screen">
         <Hero />
-        <SmartGuide />
 
-        {/* 全部 Plan 折叠区（次要浏览入口） */}
+        {/* 主内容：各平台 Token 优惠信息（默认展开） */}
+        <ProvidersSection />
+
+        {/* 智能导购：可选功能，默认收起，用户有需要再打开 */}
         <section className="py-12 px-4 border-t border-border/50">
           <div className="max-w-6xl mx-auto">
             <div className="text-center">
               <button
-                onClick={() => setShowAllProviders((v) => !v)}
+                onClick={() => setShowSmartGuide((v) => !v)}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-text-primary text-sm font-medium border-2 border-border hover:border-primary/40 hover:text-primary transition-all"
               >
-                {showAllProviders ? '收起全部 Plan' : '查看全部 16 个 Plan'}
-                {showAllProviders ? (
+                {showSmartGuide ? '收起智能导购' : '不知道选哪个？打开智能导购帮你选'}
+                {showSmartGuide ? (
                   <ChevronUp className="w-4 h-4" />
                 ) : (
                   <ChevronDown className="w-4 h-4" />
                 )}
               </button>
               <p className="text-xs text-text-muted mt-2">
-                适合喜欢自己浏览对比的用户
+                回答 3 个问题，自动推荐最划算的 Plan
               </p>
             </div>
 
-            {showAllProviders && (
+            {showSmartGuide && (
               <div className="mt-10">
-                <ProvidersSection />
+                <SmartGuide />
               </div>
             )}
           </div>
